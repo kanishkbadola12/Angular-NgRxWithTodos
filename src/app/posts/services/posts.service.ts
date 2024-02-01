@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, map, Observable, of, take } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { PostInterface } from '../models/post.interface';
 import { HttpClient } from '@angular/common/http';
 

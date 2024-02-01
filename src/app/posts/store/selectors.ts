@@ -17,3 +17,23 @@ export const errorSelector = createSelector(
     selectFeature,
     (state) => state.error
 );
+
+export const selectedPostSelector = createSelector(
+    selectFeature,
+    (state) => state.selectedPost
+);
+
+// export const togglePostDetailsSelector = createSelector(
+//     selectFeature,
+//     (state) => {
+//       const selectedPostIndex = state.selectedPostIndex;
+//       const posts = state.posts;
+  
+//       if (selectedPostIndex !== null && selectedPostIndex < posts.length) {
+//         const selectedPost = posts[selectedPostIndex];
+//         return selectedPost.title;
+//       }
+  
+//       return null;
+//     }
+//   );

@@ -1,6 +1,12 @@
 <div *ngIf="isLoading$ | async">Loading...</div>
 <div *ngIf="error$ | async as error">{{ error }}</div>
-<div *ngFor="let post of posts$ | async">
-  {{ post.title }}
+
+<div class="posts-grid-container" >
+  <post-card 
+    [post]="post" 
+    class="post-card" 
+    *ngFor="let post of posts$ | async; index as i"
+    (click)="dispatchSelectedPost(i)"
+  >
+  </post-card>
 </div>
-<post-card></post-card>

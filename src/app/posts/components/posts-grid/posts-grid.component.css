@@ -1,0 +1,38 @@
+.posts-grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 16px;
+}
+
+.post-card {
+    height: 10vh;
+    width: 10vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+    font-size: small;
+    font-weight: 300;
+    text-align: center;
+    overflow: auto;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.post-card::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.post-card::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.post-card::-webkit-scrollbar-track {
+    margin: 10px;
+}

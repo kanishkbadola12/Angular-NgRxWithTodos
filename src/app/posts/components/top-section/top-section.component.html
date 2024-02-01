@@ -1,1 +1,9 @@
-<p>top-section works!</p>
+<div *ngIf="selectedPost$ | async as selectedPost; else noActivePost" class="active-post">
+    Current active post: {{selectedPost.id}}
+</div>
+
+<ng-template #noActivePost>
+    <div class="active-post">Current active post: 0</div>
+</ng-template>
+
+
