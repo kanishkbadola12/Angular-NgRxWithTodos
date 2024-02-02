@@ -9,5 +9,4 @@ import { PostInterface } from '../../../models/post.interface';
 
 export class PostCardComponent {
   @Input() post: PostInterface | null = null;
-
 }

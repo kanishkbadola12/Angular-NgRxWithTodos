@@ -11,7 +11,7 @@ import { selectedPostIndexSelector } from '../../store/selectors';
 })
 
 export class HeaderComponent {
-  selectedPostIndex$: Observable<number>;
+  public selectedPostIndex$: Observable<number>;
 
   constructor(private store: Store<AppStateInterface>) {
     this.selectedPostIndex$ = this.store.pipe(select(selectedPostIndexSelector));

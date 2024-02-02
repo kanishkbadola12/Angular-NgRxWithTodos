@@ -9,11 +9,13 @@ export const initialState: PostsStateInterface = {
     error: null,
     selectedPostIndex: 0,
     updatedPosts: [],
-    currentSelectedProperty: 'title'
+    currentSelectedProperty: '',
+    cardClickedCount: 0
 };
 
 export const reducers = createReducer(
     initialState,
+
     on(PostsActions.getPosts, (state) => ({ ...state, isLoading: true })),
 
     on(PostsActions.getPostsSuccess, (state, action) => ({
@@ -28,32 +30,47 @@ export const reducers = createReducer(
         error: action.error
     })),
 
-    on(PostsActions.setCurrentSelectedProperty, (state, action) => ({
-        ...state,
-        currentSelectedProperty: action.property
-    })),
+    on(PostsActions.setCurrentSelectedProperty, (state, action) => {
+        const properties = ['title', 'userId', 'id', 'completed'];
+        let count = state.cardClickedCount;
+
+        if (action.index === state.selectedPostIndex) {
+            count = state.cardClickedCount;
+            count = (count + 1) % properties.length;
+        } else {
+            count = 1;
+        }
+
+        return {
+            ...state,
+            cardClickedCount: count,
+            currentSelectedProperty: properties[count]
+        }
+    }),
 
     on(PostsActions.setSelectedPostIndex, (state, action) => ({
         ...state,
-        selectedPostIndex: action.index
+        selectedPostIndex: action.selectedIndex
     })),
 
     on(PostsActions.setUpdatedPosts, (state, action) => {
+        let updatedPosts = [];
         const selectedPost = state.posts[action.index];
         const updatedPost = {
             ...selectedPost,
             title: selectedPost[state.currentSelectedProperty as keyof PostInterface]
         };
 
-        const updatedPosts = [
-            ...state.posts.slice(0, action.index),
-            updatedPost,
-            ...state.posts.slice(action.index + 1),
-        ]
-
+        updatedPosts = state.posts.map((post, index) => {
+            if (index === action.index) {
+                return updatedPost;
+            }
+            return post;
+        });
+    
         return {
             ...state,
             updatedPosts: updatedPosts
-        }
+        };
     }),
 );

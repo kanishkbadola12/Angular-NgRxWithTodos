@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as PostsActions from '../../../../store/actions';
 import { Observable } from 'rxjs';
-import { errorSelector, isLoadingSelector, postsSelector, selectedPostSelector } from '../../../../store/selectors';
+import { errorSelector, isLoadingSelector, postsSelector, selectedPostIndexSelector, selectedPostSelector } from '../../../../store/selectors';
 import { PostInterface } from '../../models/post.interface';
 import { AppStateInterface } from '../../../../models/app-state-interface';
 
@@ -13,12 +13,9 @@ import { AppStateInterface } from '../../../../models/app-state-interface';
 })
 
 export class PostsGridComponent implements OnInit {
-  isLoading$: Observable<boolean>;
-  error$: Observable<string | null>;
-  posts$: Observable<PostInterface[]>;
-
-  postProperties = ['title', 'userId', 'id', 'completed'];
-  count = 0;
+  public isLoading$: Observable<boolean>;
+  public error$: Observable<string | null>;
+  public posts$: Observable<PostInterface[]>;
 
   constructor(private store: Store<AppStateInterface>) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
@@ -26,15 +23,14 @@ export class PostsGridComponent implements OnInit {
     this.posts$ = this.store.pipe(select(postsSelector));
   }
 
-  dispatchSelectedPost(index: number): void {
-    this.count = (this.count + 1) % this.postProperties.length;
-    this.store.dispatch(PostsActions.setCurrentSelectedProperty({property: this.postProperties[this.count]}));
-    this.store.dispatch(PostsActions.setUpdatedPosts({index: index}));
-    this.store.dispatch(PostsActions.setSelectedPostIndex({index: index + 1}));
+  public dispatchActions(index: number): void {
+    this.store.dispatch(PostsActions.setCurrentSelectedProperty({ index: index + 1 }));
+    this.store.dispatch(PostsActions.setSelectedPostIndex({ selectedIndex: index + 1 }));
+    this.store.dispatch(PostsActions.setUpdatedPosts({ index: index }));
     this.posts$ = this.store.pipe(select(selectedPostSelector));
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store.dispatch(PostsActions.getPosts());
   }
 }

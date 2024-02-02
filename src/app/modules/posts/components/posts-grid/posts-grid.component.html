@@ -6,7 +6,7 @@
     [post]="post" 
     class="post-card" 
     *ngFor="let post of posts$ | async; index as i"
-    (click)="dispatchSelectedPost(i)"
+    (click)="dispatchActions(i)"
   >
   </post-card>
 </div>

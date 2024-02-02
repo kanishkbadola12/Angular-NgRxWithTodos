@@ -1,15 +1,15 @@
 .posts-grid-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 16px;
+    gap: 1rem;
 }
 
 .post-card {
     height: 10vh;
     width: 10vw;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 8px;
+    padding: 0.5rem;
     background-color: #ffffff;
     transition: box-shadow 0.3s ease;
     font-size: small;

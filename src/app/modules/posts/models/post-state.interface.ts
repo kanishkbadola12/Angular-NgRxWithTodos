@@ -7,4 +7,5 @@ export interface PostsStateInterface {
   updatedPosts: PostInterface[];
   currentSelectedProperty: string;
   selectedPostIndex: number;
+  cardClickedCount: number;
 }
