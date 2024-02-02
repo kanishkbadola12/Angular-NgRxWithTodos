@@ -6,8 +6,8 @@ import { PostsService } from "../services/posts.service";
 
 @Injectable()
 export class PostEffects {
-    constructor(private actions$: Actions, private postsService: PostsService) {}
-    
+    constructor(private actions$: Actions, private postsService: PostsService) { }
+
     getPosts$ = createEffect(() =>
         this.actions$.pipe(
             ofType(PostsActions.getPosts),
@@ -16,7 +16,7 @@ export class PostEffects {
                     .getFirst100Posts()
                     .pipe(
                         map((posts) => PostsActions.getPostsSuccess({ posts })),
-                        catchError(error => of(PostsActions.getPostsFailure({error: error.message})))
+                        catchError(error => of(PostsActions.getPostsFailure({ error: error.message })))
                     );
             })
         )
