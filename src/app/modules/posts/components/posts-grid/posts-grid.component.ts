@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import * as PostsActions from '../../store/actions';
+import * as PostsActions from '../../../../store/actions';
 import { Observable } from 'rxjs';
-import { errorSelector, isLoadingSelector, postsSelector, selectedPostSelector } from '../../store/selectors';
-import { AppStateInterface } from '../../../models/app-state-interface';
+import { errorSelector, isLoadingSelector, postsSelector, selectedPostSelector } from '../../../../store/selectors';
 import { PostInterface } from '../../models/post.interface';
+import { AppStateInterface } from '../../../../models/app-state-interface';
 
 @Component({
   selector: 'posts-grid',
@@ -16,22 +16,25 @@ export class PostsGridComponent implements OnInit {
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
   posts$: Observable<PostInterface[]>;
-  // togglePostDetails$: Observable<number | null>
+
+  postProperties = ['title', 'userId', 'id', 'completed'];
+  count = 0;
 
   constructor(private store: Store<AppStateInterface>) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
     this.posts$ = this.store.pipe(select(postsSelector));
-    // this.togglePostDetails$ = this.store.select(selectedPostSelector);
   }
 
   dispatchSelectedPost(index: number): void {
-    this.store.dispatch(PostsActions.selectPost({index: index}));
+    this.count = (this.count + 1) % this.postProperties.length;
+    this.store.dispatch(PostsActions.setCurrentSelectedProperty({property: this.postProperties[this.count]}));
+    this.store.dispatch(PostsActions.setUpdatedPosts({index: index}));
+    this.store.dispatch(PostsActions.setSelectedPostIndex({index: index + 1}));
+    this.posts$ = this.store.pipe(select(selectedPostSelector));
   }
 
   ngOnInit(): void {
     this.store.dispatch(PostsActions.getPosts());
-    
-    // this.store.dispatch(PostsActions.togglePostDetails());
   }
 }

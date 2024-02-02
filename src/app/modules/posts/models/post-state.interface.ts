@@ -4,5 +4,7 @@ export interface PostsStateInterface {
   isLoading: boolean;
   posts: PostInterface[];
   error: string | null;
-  selectedPost: PostInterface | null;
+  updatedPosts: PostInterface[];
+  currentSelectedProperty: string;
+  selectedPostIndex: number;
 }

@@ -1,0 +1,7 @@
+<div *ngIf="selectedPostIndex$ | async as selectedPostIndex; else noActivePost" class="active-post">
+    Current active post: {{selectedPostIndex}}
+</div>
+
+<ng-template #noActivePost>
+    <div class="active-post">Current active post: 0</div>
+</ng-template>
