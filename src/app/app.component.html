@@ -2,7 +2,7 @@
     <div class="spinner"></div>
 </div>
 <div *ngIf="error" class="error-container">
-    <div class="error-heading">There is an issue fetching the required data from the server. Below you can find the detailed information on the encountered error.</div>
+    <div class="error-heading">There is an issue fetching the required data from the server. Below you can find the detailed information on the encountered error:</div>
     <div class="error-info">{{error}}</div>
 </div>
 <header *ngIf="!isLoading && !error"></header>

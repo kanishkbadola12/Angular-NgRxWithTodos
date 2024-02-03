@@ -1,9 +1,10 @@
 <div class="posts-grid-container" >
   <post-card 
     [post]="post" 
-    class="post-card" 
+    class="post-card"
     *ngFor="let post of posts$ | async; index as i"
     (click)="dispatchActions(i)"
+    [ngClass]="{'selected-post': i === selectedIndex}"
   >
   </post-card>
 </div>

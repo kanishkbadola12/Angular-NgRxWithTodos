@@ -16,9 +16,10 @@ export class PostsGridComponent implements OnInit {
   public isLoading$: Observable<boolean>;
   public error$: Observable<string | null>;
   public posts$: Observable<PostInterface[]>;
+  public selectedIndex: number | null = null;
 
-  @Output() isLoadingEmitter: EventEmitter<boolean> = new EventEmitter<boolean>;
-  @Output() errorEmitter: EventEmitter<string | null> = new EventEmitter<string | null>;
+  @Output() isLoadingEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() errorEmitter: EventEmitter<string | null> = new EventEmitter<string | null>();
 
   constructor(private store: Store<AppStateInterface>) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
@@ -27,9 +28,11 @@ export class PostsGridComponent implements OnInit {
   }
 
   public dispatchActions(index: number): void {
+    this.selectedIndex = index;
     this.store.dispatch(PostsActions.setCurrentSelectedProperty({ index: index + 1 }));
     this.store.dispatch(PostsActions.setSelectedPostIndex({ selectedIndex: index + 1 }));
     this.store.dispatch(PostsActions.setUpdatedPosts({ index: index }));
+
     this.posts$ = this.store.pipe(select(selectedPostSelector));
   }
 

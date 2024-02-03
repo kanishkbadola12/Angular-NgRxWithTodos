@@ -5,6 +5,9 @@
 }
 
 .post-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10vh;
     width: 10vw;
     border-radius: 0.5rem;
@@ -14,12 +17,16 @@
     transition: box-shadow 0.3s ease;
     font-size: small;
     font-weight: 300;
-    text-align: center;
     overflow: auto;
     cursor: pointer;
 }
 
 .post-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.selected-post {
+    border: 1.5px solid #778da9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,4 +42,55 @@
 
 .post-card::-webkit-scrollbar-track {
     margin: 10px;
+}
+
+/* Extra small devices */
+@media (max-width: 319px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .post-card {
+        width: auto;
+    }
+}
+
+/* Mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .post-card {
+        width: auto;
+    }
+}
+
+/* iPads, Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .post-card {
+        width: auto;
+    }
+}
+
+/* Small screens, laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .post-card {
+        width: auto;
+    }
+}
+
+/* Desktops, large screens */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(10, 1fr);
+    }
 }
