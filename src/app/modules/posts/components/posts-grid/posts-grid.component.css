@@ -1,18 +1,18 @@
 .posts-grid-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 1rem;
+    gap: 12px;
+    padding: 20px;
 }
 
 .post-card {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    width: 10vw;
-    border-radius: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
+    padding: 8px;
     background-color: #ffffff;
     transition: box-shadow 0.3s ease;
     font-size: small;
@@ -44,53 +44,50 @@
     margin: 10px;
 }
 
-/* Extra small devices */
-@media (max-width: 319px) {
+@media screen and (max-width: 320px) {
+    .posts-grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .post-card {
+        font-size: large;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
     .posts-grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .post-card {
-        width: auto;
+        font-size: large;
     }
 }
 
-/* Mobile devices */
-@media (min-width: 320px) and (max-width: 480px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
     .posts-grid-container {
         grid-template-columns: repeat(4, 1fr);
     }
 
     .post-card {
-        width: auto;
+        font-size: medium;
     }
 }
 
-/* iPads, Tablets */
-@media (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 769px) and (max-width: 999px) {
     .posts-grid-container {
         grid-template-columns: repeat(6, 1fr);
     }
 
     .post-card {
-        width: auto;
+        font-size: medium;
     }
 }
 
-/* Small screens, laptops */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
     .posts-grid-container {
         grid-template-columns: repeat(8, 1fr);
     }
-
     .post-card {
-        width: auto;
-    }
-}
-
-/* Desktops, large screens */
-@media (min-width: 1025px) and (max-width: 1200px) {
-    .posts-grid-container {
-        grid-template-columns: repeat(10, 1fr);
+        font-size: medium;
     }
 }

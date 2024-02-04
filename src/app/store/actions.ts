@@ -7,8 +7,8 @@ export const getPostsSuccess = createAction('[Posts] Get Posts Success',props<{ 
 
 export const getPostsFailure = createAction('[Posts] Get Posts Failure', props<{ error: string }>());
 
-export const setCurrentSelectedProperty = createAction('[Posts] Update Last Selected Property', props<{ index: number }>());
+export const setCurrentSelectedProperty = createAction('[Posts] Set Current Selected Post Property', props<{ index: number }>());
 
-export const setUpdatedPosts = createAction('[Posts] Select New Posts', props<{ index: number }>());
+export const setUpdatedPosts = createAction('[Posts] Set Updated Posts', props<{ index: number }>());
 
 export const setSelectedPostIndex = createAction('[Posts] Update Selected Post Index', props<{ selectedIndex: number }>());
