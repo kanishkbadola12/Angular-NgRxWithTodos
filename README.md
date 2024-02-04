@@ -202,3 +202,7 @@ For scripts and stylesheets, use the async attribute in the HTML tag to load the
 The defer attribute can be used to defer the execution of scripts until the HTML document has been fully parsed.
 5. <b>Lazy loading</b>: Lazy loading modules improve the initial load time of the application by only loading the necessary components when they are needed.
 5. <b>Change detection strategy</b>: By using the OnPush change detection strategy, Angular will only check for changes when the input changes, rather than every time there is a change in the application.
+
+
+#### Q5: What part of a new job do you think is more important:
+Choosing my own hardware and work with a company supplied operating system image
